@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mobile Shop</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../fonts/font-slider.css">
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+<nav id="top">
+    <div class="container pull-right">
+        <div class="row col-lg-5 pull-right">
+            <div class="col-xs-10">
+                <ul class="top-link">
+                    <li><a href="consumer_manager"><span class="glyphicon glyphicon-user"
+                                                         th:text="${username}?:账户"></span> </a></li>
+                    <li><a href="contact.html"><span class="glyphicon glyphicon-envelope"></span> 消息</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div id="logo"><img src="../images/logo.png"/></div>
+        </div>
+        <div class="col-md-4">
+            <form class="form-search">
+                <input type="text" class="input-medium search-query">
+                <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div id="cart"><a class="btn btn-1" href="buycar.html"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="panel panel-default" id="consumer_info">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" style="font-size: 1.2em">个人信息</h3>
+    </div>
+    <div class="input-group col-md-4 col-md-offset-4 text-center" style="margin-top: 8px;margin-bottom: 38px">
+        <img :src="post.consumer_avatar" style="height: 120px;width: 120px"/>
+    </div>
+    <div class="input-group col-md-4 col-md-offset-4" style="margin-top: 8px;margin-bottom: 8px">
+        <span class="input-group-addon" id="basic-addon1">姓名</span>
+        <input type="text" class="form-control" :placeholder="post.consumer_username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group col-md-4 col-md-offset-4" style="margin-top: 8px;margin-bottom: 8px">
+        <span class="input-group-addon" id="basic-addon2">账号</span>
+        <input type="text" class="form-control" disabled :placeholder="post.consumer_id" aria-describedby="basic-addon2">
+    </div>
+    <div class="input-group col-md-4 col-md-offset-4" style="margin-top: 8px;margin-bottom: 8px">
+        <span class="input-group-addon" id="basic-addon3">联系方式</span>
+        <input type="text" class="form-control" :placeholder="post.consumer_phone_number" aria-describedby="basic-addon3">
+    </div>
+    <div class="input-group col-md-4 col-md-offset-4" style="margin-top: 8px;margin-bottom: 8px">
+        <span class="input-group-addon" id="basic-addon4">收货地址</span>
+        <input type="text" class="form-control" :placeholder="post.consumer_address" aria-describedby="basic-addon4">
+    </div>
+    <div class="input-group col-md-4 col-md-offset-4" style="margin-top: 8px;margin-bottom: 8px">
+        <span class="input-group-addon" id="basic-addon5">账户余额</span>
+        <input type="text" class="form-control" :placeholder="post.consumer_money" aria-describedby="basic-addon5">
+    </div>
+
+    <input class="btn btn-1 col-md-1 col-md-offset-4" type="button" value="修改密码" style="font-size:1em;margin-top: 8px;margin-bottom: 8px">
+    <input class="btn btn-1 col-md-1 col-md-offset-2" type="button" value="修改信息" style="font-size:1em;margin-top: 8px;margin-bottom: 8px">
+</div>
+
+<script>
+
+    var info = new Vue({
+        el:"#consumer_info",
+        data:{
+            post:null
+        },
+        methods:{
+            get_consumer_info:function () {
+                const context = this;
+                $.ajax({
+                    type:"post",
+                    url:"consumer_info",
+                    dataType:"json",
+                    success:function (data) {
+                        context.post=data;
+                    }
+                });
+            }
+        }
+    });
+
+    info.get_consumer_info();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <title>Mobile Shop</title>
+	
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../fonts/font-slider.css">
+	
+	<script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+
+<nav id="top">
+	<div class="container pull-right">
+		<div class="row col-lg-5 pull-right">
+			<div class="col-xs-10">
+				<ul class="top-link">
+					<li><a href="consumer_manager"><span class="glyphicon glyphicon-user" th:text="${username}?:账户"></span> </a></li>
+					<li><a href="contact.html"><span class="glyphicon glyphicon-envelope"></span> 消息</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<header class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div id="logo"><img src="../images/logo.png"/></div>
+		</div>
+		<div class="col-md-4">
+			<form class="form-search">
+				<input type="text" class="input-medium search-query">
+				<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+			</form>
+		</div>
+		<div class="col-md-4">
+			<div id="cart"><a class="btn btn-1" href="buycar.html"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<nav id="menu" class="navbar">
+	<div class="container">
+		<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+			<button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+		</div>
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index">首页</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">台式计算机</a>
+					<div class="dropdown-menu">
+						<div class="dropdown-inner">
+							<ul class="list-unstyled">
+								<li><a href="category.html">Windows计算机</a></li>
+								<li><a href="category.html">MacBook计算机</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">笔记本电脑</a>
+					<div class="dropdown-menu">
+						<div class="dropdown-inner">
+							<ul class="list-unstyled">
+								<li><a href="category.html">戴尔</a></li>
+								<li><a href="category.html">华硕</a></li>
+								<li><a href="category.html">三星</a></li>
+								<li><a href="category.html">联想</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">手机</a>
+					<div class="dropdown-menu" style="margin-left: -203.625px;">
+						<div class="dropdown-inner">
+							<ul class="list-unstyled">
+								<li><a href="category.html">苹果</a></li>
+								<li><a href="category.html">三星</a></li>
+								<li><a href="category.html">联想</a></li>
+								<li><a href="category.html">谷歌</a></li>
+							</ul>
+							<ul class="list-unstyled">
+								<li><a href="category.html">诺基亚</a></li>
+								<li><a href="category.html">戴尔</a></li>
+								<li><a href="category.html">Oppo</a></li>
+								<li><a href="category.html">HTC</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+	<div id="page-content" class="single-page">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<ul class="breadcrumb">
+						<li><a href="#">联系我们</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<p th:text="${message}" style="color: red" class="col-md-6 col-md-offset-0"></p><br>
+				<div class="col-lg-12">
+					<div class="heading"><h1>联系我们</h1></div>
+				</div>
+				<div class="col-md-6" style="margin-bottom: 30px;">
+					<form name="form1" id="ff" method="post" action="do_contact">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="姓名 *" name="name" id="name" required data-validation-required-message="请输入您的姓名.">
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" placeholder="邮箱 *" name="email" id="email" required data-validation-required-message="请输入您的邮箱.">
+						</div>
+						<div class="form-group">
+							<input type="tel" class="form-control" placeholder="联系方式 *" name="phone" id="phone" required data-validation-required-message="请输入您的电话号码.">
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" placeholder="反馈信息 *" name="message" id="message" required data-validation-required-message="请输入您的反馈信息."></textarea>
+						</div>
+						<button type="submit" class="btn btn-1">发送消息</button>
+					</form>
+				</div>
+				<div class="col-md-6">
+					<p><span class="glyphicon glyphicon-home"></span> 中国浙江杭州</p>
+					<p><span class="glyphicon glyphicon-earphone"></span> +81 17823283147</p>
+					<p><span class="glyphicon glyphicon-envelope"></span> niyinghe@tiancheng.com</p>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.289259162295!2d-120.7989351!3d37.5246781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8091042b3386acd7%3A0x3b4a4cedc60363dd!2sMain+St%2C+Denair%2C+CA+95316%2C+Hoa+K%E1%BB%B3!5e0!3m2!1svi!2s!4v1434016649434" width="95%" height="230" frameborder="0" style="border:0"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="wrap-footer">
+				<div class="row">
+					<div class="col-md-3 col-footer footer-1">
+						<img src="../images/logofooter.png" />
+						<p>创造完美，追求极致，塑造属于你的品质！</p>
+					</div>
+					<div class="col-md-3 col-footer footer-2">
+						<div class="heading"><h4>用户服务</h4></div>
+						<ul>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">推送消息</a></li>
+							<li><a href="#">隐私政策</a></li>
+							<li><a href="#">服务条款</a></li>
+							<li><a href="contact">联系我们</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-footer footer-3">
+						<div class="heading"><h4>我的账户</h4></div>
+						<ul>
+							<li><a href="#">我的账户</a></li>
+							<li><a href="#">品牌</a></li>
+							<li><a href="#">礼券</a></li>
+							<li><a href="#">特价</a></li>
+							<li><a href="#">网站地图</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-footer footer-4">
+						<div class="heading"><h4>联系我们</h4></div>
+						<ul>
+							<li><span class="glyphicon glyphicon-home"></span>中国浙江杭州</li>
+							<li><span class="glyphicon glyphicon-earphone"></span>+81 17823283147</li>
+							<li><span class="glyphicon glyphicon-envelope"></span>niyinghe@tiancheng.com</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="pull-right">
+							<ul>
+								<li><img src="../images/visa-curved-32px.png" /></li>
+								<li><img src="../images/paypal-curved-32px.png" /></li>
+								<li><img src="../images/discover-curved-32px.png" /></li>
+								<li><img src="../images/maestro-curved-32px.png" /></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="mybatis/mybatisConfig.properties"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.tiancheng.homework.domain" targetProject="D:\Program Files\JetBrains\FinallyHomework\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="D:\Program Files\JetBrains\FinallyHomework\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.tiancheng.homework.mapper" targetProject="D:\Program Files\JetBrains\FinallyHomework\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--<table schema="uem" tableName="exam" domainObjectName="Exam">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="examID" sqlStatement="DB2" identity="true" />
+        </table>
+
+        <table schema="uem" tableName="examinee" domainObjectName="Examinee">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="idExaminee" sqlStatement="DB2" identity="true" />
+        </table>
+
+        <table schema="uem" tableName="grade" domainObjectName="Grade">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="idExaminee" sqlStatement="DB2" identity="true" />
+        </table>
+
+        <table schema="uem" tableName="person" domainObjectName="Person">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="idperson" sqlStatement="DB2" identity="true" />
+        </table>-->
+
+        <!--<table schema="uem" tableName="news" domainObjectName="News">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="idnews" sqlStatement="DB2" identity="true" />
+        </table>
+
+        <table schema="uem" tableName="richeng" domainObjectName="Richeng">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="idricheng" sqlStatement="DB2" identity="true" />
+        </table>
+
+            <table schema="uem" tableName="server" domainObjectName="Server">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="idserver" sqlStatement="DB2" identity="true" />
+        </table>-->
+
+        <table schema="uem" tableName="process" domainObjectName="Process">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="idprocess" sqlStatement="DB2" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>

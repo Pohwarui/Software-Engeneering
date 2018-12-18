@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue示例</title>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="hot_goods">
+        <hot_goods
+                v-for="post in posts"
+                v-bind:key="post.goods_id"
+                v-bind:goods_id="post.goods_id"
+                v-bind:goods_img="post.goods_img"
+                v-bind:goods_name="post.goods_name"
+                v-bind:goods_price="post.goods_price"
+                v-bind:goods_score="post.goods_score">
+        </hot_goods>
+    </div>
+</body>
+
+
+<script>
+    Vue.component('hot_goods', {
+        props: ['goods_id', 'goods_img', 'goods_name', 'goods_price', 'goods_score'],
+        template:
+            `<div>
+            	<div>
+            		<div class="../image"><a v-bind:href="'product/'+goods_id"><img v-bind:src="'../'+goods_img" /></a></div>
+           			<div>
+           				<div><a href="product.html">{{goods_name}}</a></div>
+           				<div>￥{{goods_price}}</div>
+           				<div><span class="glyphicon glyphicon-star" v-for="n in goods_score"></span><span class="glyphicon glyphicon-star-empty" v-for="n in 5-goods_score"></span></div>
+           		    </div>
+           		</div>
+           	</div>`
+    });
+
+    var hot_goods_app = new Vue({
+        el: '#hot_goods',
+        data: {
+            posts: null,
+        },
+        methods: {
+            get_hot_goods: function () {
+                const context = this;
+                $.ajax({
+                    type: "post",
+                    url: "../../goods/hot_goods",
+                    dataType: "json",
+                    success: function (data) {
+                        context.posts = data;
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
+        }
+    });
+
+    hot_goods_app.get_hot_goods();
+
+</script>
+</html>
+
+
+`<ul class=&quot;lightgallery-info&quot;>
+    <li><p>编号:</p>`+id+`</li>
+    <li><p>名称:</p>`+name+`</li>
+    <li><p>成分:</p>`+ingredient+`</li>
+    <li><p>门幅:</p>`+sample_width+`</li>
+    <li><p>克重:</p>`+sample_weight+`</li>
+</ul>`

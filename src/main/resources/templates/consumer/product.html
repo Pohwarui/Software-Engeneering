@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mobile Shop</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../fonts/font-slider.css">
+
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/photo-gallery.js"></script>
+    <script src="../../js/vue.js"></script>
+
+</head>
+<body>
+
+<nav id="top">
+    <div class="container pull-right">
+        <div class="row col-lg-5 pull-right">
+            <div class="col-xs-10">
+                <ul class="top-link">
+                    <li><a href="../consumer_manager"><span class="glyphicon glyphicon-user"
+                                                         th:text="${username}?:账户"></span> </a></li>
+                    <li><a href="contact.html"><span class="glyphicon glyphicon-envelope"></span> 消息</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<p id="goods_id" th:text="${goods_id}" style="visibility: hidden"></p>
+<header class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div id="logo"><img src="../../images/logo.png"/></div>
+        </div>
+        <div class="col-md-4">
+            <form class="form-search">
+                <input type="text" class="input-medium search-query">
+                <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div id="cart"><a class="btn btn-1" href="buycar.html"><span
+                    class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav id="menu" class="navbar">
+    <div class="container">
+        <div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+            <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">首页</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">台式计算机</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <ul class="list-unstyled">
+                                <li><a href="category.html">Windows计算机</a></li>
+                                <li><a href="category.html">MacBook计算机</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">笔记本电脑</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <ul class="list-unstyled">
+                                <li><a href="category.html">戴尔</a></li>
+                                <li><a href="category.html">华硕</a></li>
+                                <li><a href="category.html">三星</a></li>
+                                <li><a href="category.html">联想</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">手机</a>
+                    <div class="dropdown-menu" style="margin-left: -203.625px;">
+                        <div class="dropdown-inner">
+                            <ul class="list-unstyled">
+                                <li><a href="category.html">苹果</a></li>
+                                <li><a href="category.html">三星</a></li>
+                                <li><a href="category.html">联想</a></li>
+                                <li><a href="category.html">谷歌</a></li>
+                            </ul>
+                            <ul class="list-unstyled">
+                                <li><a href="category.html">诺基亚</a></li>
+                                <li><a href="category.html">戴尔</a></li>
+                                <li><a href="category.html">Oppo</a></li>
+                                <li><a href="category.html">HTC</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="page-content" class="single-page">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12" id="goods_info_app1">
+                <ul class="breadcrumb">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="category.html">{{goods_type}}</a></li>
+                    <li><a href="#">{{goods_name}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div id="main-content" class="col-md-8">
+                <div class="product" id="goods_info_app2">
+                    <div class="col-md-6">
+                        <div class="../image">
+                            <img v-bind:src="'../'+goods_img"/>
+                            <!--<div class="../image-more">
+                                <ul class="row">
+                                    <li class="col-lg-3 col-sm-3 col-xs-4">
+                                        <a href="#"><img class="img-responsive" v-bind:src="'../'+goods_img"></a>
+                                    </li>
+                                </ul>
+                            </div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="caption">
+                            <div class="name"><h3>{{goods_name}}</h3></div>
+                            <div class="info">
+                                <ul>
+                                    <li>{{goods_brand}}</li>
+                                </ul>
+                            </div>
+                            <div class="price">{{goods_price}}</div>
+                            <!--<div class="options">
+                                AVAILABLE OPTIONS
+                                <select>
+                                    <option value="" selected>&#45;&#45;&#45;&#45;Please Select&#45;&#45;&#45;&#45;</option>
+                                    <option value="red">RED</option>
+                                    <option value="black">BLACK</option>
+                                </select>
+                            </div>-->
+                            <div class="rating"><span class="glyphicon glyphicon-star"></span><span
+                                    class="glyphicon glyphicon-star"></span><span
+                                    class="glyphicon glyphicon-star"></span><span
+                                    class="glyphicon glyphicon-star"></span><span
+                                    class="glyphicon glyphicon-star-empty"></span></div>
+                            <div class="well"><label>数量: </label> <input class="form-inline quantity" type="text"
+                                                                         value="1"><a href="#"
+                                                                                      class="btn btn-2 ">添加</a></div>
+                            <div class="share well">
+                                <strong style="margin-right: 13px;">分享到 :</strong>
+                                <a href="#" class="share-btn" target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" class="share-btn" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn" target="_blank">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="product-desc">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#description">用户评论</a></li>
+                        <li><a href="#review">添加评论</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="description" class="tab-pane fade in active">
+                            <comment
+                                    v-for="post in posts"
+                                    v-bind:key="post.comment_id"
+                                    v-bind:consumer_username="post.consumer_username"
+                                    v-bind:comment_content="post.comment_content">
+                            </comment>
+                        </div>
+                        <div id="review" class="tab-pane fade">
+                            <div class="review-text">
+                                <p>根据您对产品的真实看法提出意见，请不要恶意诋毁。</p>
+                            </div>
+                            <div class="review-form">
+                                <h4>输入评论</h4>
+                                <form name="form1" id="ff" method="post" action="submit_comment">
+                                    <label>
+                                        <span>请输入您的评论:<p th:text="${submit_status}?:''"></p></span>
+                                        <textarea name="comment_content" id="comment_content"></textarea>
+                                        <input name="goods_id" type="text" th:value="${goods_id}?:''" style="visibility: hidden"/>
+                                    </label>
+                                    <div class="text-right">
+                                        <input class="btn btn-default" type="reset" name="reset" value="重置"/>
+                                        <input class="btn btn-default" type="submit" name="submit" value="提交"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-related">
+                    <div class="heading"><h2>相关产品</h2></div>
+                    <div class="products" id="hot_goods">
+                        <hot_goods
+                                v-for="post in posts"
+                                v-bind:key="post.goods_id"
+                                v-bind:goods_id="post.goods_id"
+                                v-bind:goods_img="post.goods_img"
+                                v-bind:goods_name="post.goods_name"
+                                v-bind:goods_price="post.goods_price"
+                                v-bind:goods_score="post.goods_score">
+                        </hot_goods>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div id="sidebar" class="col-md-4">
+                <div class="widget wid-categories">
+                    <div class="heading"><h4>类别</h4></div>
+                    <div class="content">
+                        <ul>
+                            <li><a href="#">台式计算机</a></li>
+                            <li><a href="#">笔记本电脑</a></li>
+                            <li><a href="#">手机</a></li>
+                            <li><a href="#">软件</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="widget wid-type">
+                    <div class="heading"><h4>类型</h4></div>
+                    <div class="content">
+                        <select>
+                            <option value="EL" selected>电池</option>
+                            <option value="WC">网站相机</option>
+                            <option value="TA">文件管理</option>
+                            <option value="AP">音频部分</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widget wid-discouts">
+                    <div class="heading"><h4>折扣</h4></div>
+                    <div class="content">
+                        <label class="checkbox"><input type="checkbox" name="discount" checked="">高于 - 10%
+                            (20)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">40% - 50% (5)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">30% - 20% (7)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">10% - 5% (2)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">其他(50)</label>
+                    </div>
+                </div>
+                <div class="widget wid-brand">
+                    <div class="heading"><h4>品牌</h4></div>
+                    <div class="content">
+                        <label class="checkbox"><input type="checkbox" name="brand">Nokia</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Samsung</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Iphone</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">HTC</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Oppo</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Kings</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Zumba</label>
+                    </div>
+                </div>
+                <div class="widget wid-product">
+                    <div class="heading"><h4>新品推送</h4></div>
+                    <div class="content" id="last_goods">
+                        <last_goods
+                                v-for="post in posts"
+                                v-bind:key="post.goods_id"
+                                v-bind:goods_id="post.goods_id"
+                                v-bind:goods_img="post.goods_img"
+                                v-bind:goods_name="post.goods_name"
+                                v-bind:goods_price="post.goods_price"
+                                v-bind:goods_score="post.goods_score">
+                        </last_goods>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <div class="wrap-footer">
+            <div class="row">
+                <div class="col-md-3 col-footer footer-1">
+                    <img src="../../images/logofooter.png"/>
+                    <p>创造完美，追求极致，塑造属于你的品质！</p>
+                </div>
+                <div class="col-md-3 col-footer footer-2">
+                    <div class="heading"><h4>用户服务</h4></div>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">推送消息</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">服务条款</a></li>
+                        <li><a href="contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-footer footer-3">
+                    <div class="heading"><h4>我的账户</h4></div>
+                    <ul>
+                        <li><a href="#">我的账户</a></li>
+                        <li><a href="#">品牌</a></li>
+                        <li><a href="#">礼券</a></li>
+                        <li><a href="#">特价</a></li>
+                        <li><a href="#">网站地图</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-footer footer-4">
+                    <div class="heading"><h4>联系我们</h4></div>
+                    <ul>
+                        <li><span class="glyphicon glyphicon-home"></span>中国浙江杭州</li>
+                        <li><span class="glyphicon glyphicon-earphone"></span>+81 17823283147</li>
+                        <li><span class="glyphicon glyphicon-envelope"></span>niyinghe@tiancheng.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="pull-right">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/product.js"></script>
+
+</body>
+</html>
