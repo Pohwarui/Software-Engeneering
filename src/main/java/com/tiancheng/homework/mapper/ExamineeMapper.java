@@ -98,5 +98,6 @@ public interface ExamineeMapper {
     @Select("select * from examinee where idExaminee=#{id}")
     Examinee selectById(@Param("id") int id);
 
-    @Select("select * from examinee where idExaminee=#{id} & ")
+    @Select("select password from examinee where (schoolnum=#{sn} and number=#{number})")
+    String selectLogin(@Param("sn") String sn, @Param("number") String number);
 }

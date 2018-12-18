@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @org.springframework.stereotype.Service
+/* Dssign bu Pohwarui */
 public class Service {
 
+    /**  考生映射接口 **/
     @Autowired
     private ExamineeMapper examineeMapper;
     @Autowired
@@ -28,7 +30,13 @@ public class Service {
     @Autowired
     private ProcessMapper processMapper;
 
+    private final  String nul = "";
 
+    /**
+     * 加入考生
+     * @param examinee 考生信息
+     * @return 加入是否成功
+     */
     public boolean addExaminee(Examinee examinee) {
         try {
             examineeMapper.insert(examinee);
@@ -38,6 +46,11 @@ public class Service {
         return true;
     }
 
+    /**
+     * 加入考试
+     * @param exam 考试信息
+     * @return 考试加入是否成功
+     */
     public boolean addExam(Exam exam) {
         try {
             examMapper.insert(exam);
@@ -47,6 +60,11 @@ public class Service {
         return true;
     }
 
+    /**
+     * 加入成绩
+     * @param grade 成绩信息
+     * @return 成绩加入是否成功
+     */
     public boolean addGrade(Grade grade) {
         try {
             gradeMapper.insert(grade);
@@ -56,7 +74,11 @@ public class Service {
         return true;
     }
 
-
+    /**
+     * 加入学生
+     * @param person 学生信息
+     * @return 学生加入是否成功
+     */
     public boolean addPerson(Person person) {
         try {
             personMapper.insert(person);
@@ -66,78 +88,114 @@ public class Service {
         return true;
     }
 
+/*
+    public Examinee selectExamineeById(Integer id) {
+       Examinee examinee;
+        try {
+            examinee = examineeMapper.selectByPrimaryKey(id);
+        } catch(Exception e) {
+            return null;
+        }
+        return examinee;
+    }
 
-//    public Examinee selectExamineeById(Integer id) {
-//        Examinee examinee;
-//        try {
-//            examinee = examineeMapper.selectByPrimaryKey(id);
-//        } catch(Exception e) {
-//            return null;
-//        }
-//        return examinee;
-//    }
 
     public <list>ExamineeExample selectByExample(Examinee examinee) {
-        ExamineeExample examinee_response = new ExamineeExample();
-        ExamineeExample.Criteria criteria = examinee_response.createCriteria();
+        ExamineeExample examineeResponse = new ExamineeExample();
+        ExamineeExample.Criteria criteria = examineeResponse.createCriteria();
         //根据ID查找
-        if(!examinee.getIdExaminee().equals("")){
+        if(!nul.equals(examinee.getIdExaminee())){
             criteria = criteria.andIdExamineeEqualTo(examinee.getIdExaminee());
         }
-//        try {
-//            examinee = examineeMapper.selectByExample(examinee);
-//        } catch(Exception e) {
-//            return null;
-//        }
-        return examinee_response;
+        try {
+           examinee = examineeMapper.selectByExample(examinee);
+       } catch(Exception e) {
+           return null;
+        }
+        return examineeResponse;
     }
 
     public <list>ExamExample selectByExample(Exam exam) {
-        ExamExample exam_response = new ExamExample();
-        ExamExample.Criteria criteria = exam_response.createCriteria();
+        ExamExample examResponse = new ExamExample();
+        ExamExample.Criteria criteria = examResponse.createCriteria();
         //根据ID查找
-        if(!exam.getExamID().equals("")){
+        if(!nul.equals(exam.getExamID())){
             criteria = criteria.andExamIDEqualTo(exam.getExamID());
         }
-        return exam_response;
+        return examResponse;
     }
 
     public <list>GradeExample selectByExample(Grade grade) {
-        GradeExample grade_response = new GradeExample();
-        GradeExample.Criteria criteria = grade_response.createCriteria();
+        GradeExample gradeResponse = new GradeExample();
+        GradeExample.Criteria criteria = gradeResponse.createCriteria();
         //根据ID查找
-        if(!grade.getIdExaminee().equals("")){
+        if(!nul.equals(grade.getIdExaminee())){
             criteria = criteria.andIdExamineeEqualTo(grade.getIdExaminee());
         }
-        return grade_response;
+        return gradeResponse;
     }
 
     public <list>PersonExample selectByExample(Person person) {
-        PersonExample person_response = new PersonExample();
-        PersonExample.Criteria criteria = person_response.createCriteria();
+        PersonExample personResponse = new PersonExample();
+        PersonExample.Criteria criteria = personResponse.createCriteria();
         //根据ID查找
-        if(!person.getIdperson().equals("")){
+        if(!nul.equals(person.getIdperson())){
             criteria = criteria.andIdpersonEqualTo(person.getIdperson());
         }
-        return person_response;
+        return personResponse;
     }
+*/
 
+    /**
+     * 根据准考证号搜索考生信息
+     * @param id 准考证号
+     * @return 考生信息
+     */
     public Examinee getExamineeById(int id) {
         return examineeMapper.selectById(id);
     }
 
+    /**
+     *  获取考试新闻
+     * @return 考试新闻
+     */
     public List<News> getNews() {
         return newsMapper.selectAll();
     }
 
-
+    /**
+     * 获取日程安排
+     * @return 日程安排
+     */
     public List<Richeng> getRicheng() {
         return richengMapper.selectAll();
     }
 
+    /**
+     * 获取考生服务
+     * @return 考生服务
+     */
     public List<Server> getServer() {return serverMapper.selectAll();}
 
+    /**
+     * 获取报名流程
+     * @return 报名流程
+     */
     public List<Process> getProcess() {return processMapper.selectAll();}
 
-    public
+    /**
+     * 登陆
+     * @param sn 学校编号
+     * @param number 学号
+     * @param password 密码
+     * @return 是否登陆成功
+     */
+    public boolean login(String sn, String number, String password)  {
+        String pwd = examineeMapper.selectLogin(sn, number);
+        if(password.equals(pwd)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

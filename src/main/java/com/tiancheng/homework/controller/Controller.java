@@ -15,12 +15,18 @@ import java.util.List;
 @RequestMapping("uem")
 public class Controller {
 
+    /**  Service层映射接口 **/
     @Autowired
     private Service service;
 
-    /*@RequestMapping("addExaminee")
+    /**
+     * 加入考生
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
+    @RequestMapping("addExaminee")
     public boolean addExaminee(HttpServletRequest request, HttpServletResponse response){
-        String name = request.getParameter("name");
 
         Examinee examinee = new Examinee();
         examinee.setName(name);
@@ -30,6 +36,12 @@ public class Controller {
         return true;
     }
 
+    /**
+     * 加入考试
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("addExam")
     public boolean addExam(HttpServletRequest  request, HttpServletResponse response){
         String name = request.getParameter("name");
@@ -42,6 +54,12 @@ public class Controller {
         return true;
     }
 
+    /**
+     * 加入成绩
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("addGrade")
     public boolean addGrade(HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
@@ -54,6 +72,12 @@ public class Controller {
         return true;
     }
 
+    /**
+     * 加入学生
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("addPerson")
     public boolean addPerson(HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
@@ -65,7 +89,7 @@ public class Controller {
 
         return true;
     }
-
+/*
     @RequestMapping("selectByExample")
     public ExamineeExample selectExamineeById(Examinee id) {
         return service.selectByExample(id);
@@ -86,6 +110,12 @@ public class Controller {
         return service.selectByExample(id);
     }*/
 
+    /**
+     * 
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("getSingleExamineeInfo")
     @ResponseBody
     public Examinee getSingleExamineeInfo(HttpServletRequest request, HttpServletResponse response) {
@@ -100,6 +130,12 @@ public class Controller {
         }
     }
 
+    /**
+     * 加入考生
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("getAllServerInfo")
     @ResponseBody
     public List<Server> getServerInfo(HttpServletResponse response) {
@@ -112,6 +148,12 @@ public class Controller {
         }
     }
 
+    /**
+     * 加入考生
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("getAllNewsInfo")
     @ResponseBody
     public List<News> getNewsInfo(HttpServletResponse response) {
@@ -124,6 +166,12 @@ public class Controller {
         }
     }
 
+    /**
+     * 加入考生
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("getAllRichengInfo")
     @ResponseBody
     public List<Richeng> getRichengInfo(HttpServletResponse response) {
@@ -136,6 +184,12 @@ public class Controller {
         }
     }
 
+    /**
+     * 加入考生
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
     @RequestMapping("getAllProcessInfo")
     @ResponseBody
     public List<Process> getProcessInfo(HttpServletResponse response) {
@@ -146,5 +200,23 @@ public class Controller {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 加入考生
+     * @param request
+     * @param response
+     * @return 加入是否成功
+     */
+    @RequestMapping("login")
+    @ResponseBody
+    public boolean login(HttpServletRequest request, HttpServletResponse response) {
+       /* String sn = request.getParameter("sn");
+        String pwd = request.getParameter("pwd");*/
+       String sn = "1";
+       String number = "123";
+       String password = "123";
+
+       return service.login(sn, number, password);
     }
 }
